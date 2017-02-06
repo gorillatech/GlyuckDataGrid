@@ -11,7 +11,7 @@ import UIKit
 
 /**
  Custom UICollectionViewLayout implementing data grid view layout. Implements layout for single-section table with floating header and columns. You should not use this class directly.
-*/
+ */
 open class DataGridViewLayout: UICollectionViewLayout {
     fileprivate(set) open var dataGridView: DataGridView!
 
@@ -76,7 +76,7 @@ open class DataGridViewLayout: UICollectionViewLayout {
                     return $0
                 }
             }
-            attributes.frame.origin.x = max(scrollOffsetX + floatWidths, attributes.frame.origin.x)
+            attributes.frame.origin.x = scrollOffsetX + widthForColumn(8) * 8 + 5;
             attributes.zIndex += 1
         }
 
@@ -96,13 +96,10 @@ open class DataGridViewLayout: UICollectionViewLayout {
 
         var x:CGFloat = widthForRowHeader()
         for i in (0..<dataGridView.numberOfColumns()) {
-            if x >= rect.maxX {
-                break
-            }
 
             let nextX = x + widthForColumn(i)
             if x - widthForRowHeader() >= rect.minX || nextX - widthForRowHeader() > rect.minX ||
-                    dataGridView?.delegate?.dataGridView?(dataGridView!, shouldFloatColumn: i) == true {
+                dataGridView?.delegate?.dataGridView?(dataGridView!, shouldFloatColumn: i) == true {
                 items.append(i)
             }
             x = nextX
@@ -198,7 +195,7 @@ open class DataGridViewLayout: UICollectionViewLayout {
                     return $0
                 }
             }
-            attributes.frame.origin.x = max(scrollOffsetX + floatWidths, attributes.frame.origin.x)
+            attributes.frame.origin.x = scrollOffsetX + widthForColumn(8) * 8 + 5;
             attributes.zIndex += 1
         }
         return attributes
