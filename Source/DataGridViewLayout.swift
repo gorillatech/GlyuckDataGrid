@@ -69,7 +69,7 @@ open class DataGridViewLayout: UICollectionViewLayout {
         )
         if dataGridView?.delegate?.dataGridView?(dataGridView!, shouldFloatColumn: (indexPath as NSIndexPath).row) == true {
             let scrollOffsetX = dataGridView.collectionView.contentOffset.x + collectionView!.contentInset.left
-            let floatWidths = Array(0..<(indexPath as NSIndexPath).row).reduce(CGFloat(0)) {
+            _ = Array(0..<(indexPath as NSIndexPath).row).reduce(CGFloat(0)) {
                 if dataGridView?.delegate?.dataGridView?(dataGridView!, shouldFloatColumn: $1) == true {
                     return $0 + widthForColumn($1)
                 } else {
@@ -188,7 +188,7 @@ open class DataGridViewLayout: UICollectionViewLayout {
         attributes.zIndex = 2
         if dataGridView?.delegate?.dataGridView?(dataGridView!, shouldFloatColumn: indexPath.index) == true {
             let scrollOffsetX = dataGridView.collectionView.contentOffset.x + collectionView!.contentInset.left
-            let floatWidths = Array(0..<indexPath.index).reduce(CGFloat(0)) {
+            _ = Array(0..<indexPath.index).reduce(CGFloat(0)) {
                 if dataGridView?.delegate?.dataGridView?(dataGridView!, shouldFloatColumn: $1) == true {
                     return $0 + widthForColumn($1)
                 } else {

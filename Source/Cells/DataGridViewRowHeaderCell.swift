@@ -32,8 +32,13 @@ open class DataGridViewRowHeaderCell: DataGridViewBaseHeaderCell {
 //        }
 //        
     }()
-    open override static func initialize() {
-        super.initialize()
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         _ = DataGridViewRowHeaderCell.__once
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
     }
 }
