@@ -204,7 +204,7 @@ open class DataGridView: UIView {
     }
 
     /// Collection view used internally to build up data grid.
-    fileprivate(set) open lazy var collectionView: UICollectionView = {
+    @objc fileprivate(set) open lazy var collectionView: UICollectionView = {
         let layout = DataGridViewLayout(dataGridView: self)
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -227,16 +227,16 @@ open class DataGridView: UIView {
     }()
 
     /// The object that provides the data for the data grid view.
-    open weak var dataSource: DataGridViewDataSource?
+    @objc open weak var dataSource: DataGridViewDataSource?
     /// The object that acts as the delegate of the data grid view.
-    open weak var delegate: DataGridViewDelegate?
+    @objc open weak var delegate: DataGridViewDelegate?
 
     /// Height for every row in data grid view
-    open var rowHeight: CGFloat = 44
+    @objc open var rowHeight: CGFloat = 44
     /// Height for header row
-    open var columnHeaderHeight: CGFloat = 44
+    @objc open var columnHeaderHeight: CGFloat = 44
     /// Width for vertical header displayed on left of each row. If zero, vertical headers are not displayed.
-    open var rowHeaderWidth: CGFloat = 0
+    @objc open var rowHeaderWidth: CGFloat = 0
     /// Background color for even rows of zebra-striped tables.
     @objc open dynamic var row1BackgroundColor: UIColor?
     /// Background color for odd rows of zebra-striped tables.
@@ -357,7 +357,7 @@ open class DataGridView: UIView {
      - parameter nib:        The nib object containing the cell object. The nib file must contain only one top-level object and that object must be of the type UICollectionViewCell.
      - parameter identifier: The reuse identifier for the cell. This parameter must not be nil and must not be an empty string.
      */
-    open func registerNib(_ nib: UINib, forCellWithReuseIdentifier identifier: String) {
+    @objc open func registerNib(_ nib: UINib, forCellWithReuseIdentifier identifier: String) {
         collectionView.register(nib, forCellWithReuseIdentifier: identifier)
     }
 
@@ -379,7 +379,7 @@ open class DataGridView: UIView {
 
      - returns: A UICollectionView object with the associated reuse identifier. This method always returns a valid cell.
      */
-    open func dequeueReusableCellWithReuseIdentifier(_ identifier: String, forIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+    @objc open func dequeueReusableCellWithReuseIdentifier(_ identifier: String, forIndexPath indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         if indexPath.dataGridRow % 2 == 0 {
             cell.backgroundColor = row1BackgroundColor
@@ -419,7 +419,7 @@ open class DataGridView: UIView {
 
      - returns: A DataGridViewColumnHeaderCell object with the associated reuse identifier. This method always returns a valid view.
      */
-    open func dequeueReusableHeaderViewWithReuseIdentifier(_ identifier: String, forColumn column: NSInteger) -> DataGridViewColumnHeaderCell {
+    @objc open func dequeueReusableHeaderViewWithReuseIdentifier(_ identifier: String, forColumn column: NSInteger) -> DataGridViewColumnHeaderCell {
         let indexPath = IndexPath(index: column)
         let cell = collectionView.dequeueReusableSupplementaryView(ofKind: SupplementaryViewKind.ColumnHeader.rawValue, withReuseIdentifier: identifier, for: indexPath)
         guard let headerCell = cell as? DataGridViewColumnHeaderCell else {
@@ -439,7 +439,7 @@ open class DataGridView: UIView {
 
      - returns: A DataGridViewColumnHeaderCell object with the associated reuse identifier. This method always returns a valid view.
      */
-    open func dequeueReusableHeaderViewWithReuseIdentifier(_ identifier: String, forRow row: NSInteger) -> DataGridViewRowHeaderCell {
+    @objc open func dequeueReusableHeaderViewWithReuseIdentifier(_ identifier: String, forRow row: NSInteger) -> DataGridViewRowHeaderCell {
         let indexPath = IndexPath(index: row)
         let cell = collectionView.dequeueReusableSupplementaryView(ofKind: SupplementaryViewKind.RowHeader.rawValue, withReuseIdentifier: identifier, for: indexPath)
         guard let headerCell = cell as? DataGridViewRowHeaderCell else {
@@ -457,7 +457,7 @@ open class DataGridView: UIView {
 
      - returns: A DataGridViewColumnHeaderCell object with the associated reuse identifier. This method always returns a valid view.
      */
-    open func dequeueReusableCornerHeaderViewWithReuseIdentifier(_ identifier: String) -> DataGridViewCornerHeaderCell {
+    @objc open func dequeueReusableCornerHeaderViewWithReuseIdentifier(_ identifier: String) -> DataGridViewCornerHeaderCell {
         let indexPath = IndexPath(index: 0)
         let cell = collectionView.dequeueReusableSupplementaryView(ofKind: SupplementaryViewKind.CornerHeader.rawValue, withReuseIdentifier: identifier, for: indexPath)
         guard let headerCell = cell as? DataGridViewCornerHeaderCell else {
