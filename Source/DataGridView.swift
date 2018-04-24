@@ -265,6 +265,7 @@ open class DataGridView: UIView {
 
      - returns: The number of columns in data grid view.
      */
+    @objc
     open func numberOfColumns() -> Int {
         return dataSource?.numberOfColumnsInDataGridView(self) ?? 0
     }
@@ -275,6 +276,7 @@ open class DataGridView: UIView {
 
      - returns: The number of rows in data grid view.
      */
+    @objc
     open func numberOfRows() -> Int {
         return dataSource?.numberOfRowsInDataGridView(self) ?? 0
     }

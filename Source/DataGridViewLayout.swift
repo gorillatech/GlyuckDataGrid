@@ -76,7 +76,7 @@ open class DataGridViewLayout: UICollectionViewLayout {
                     return $0
                 }
             }
-            attributes.frame.origin.x = scrollOffsetX + widthForColumn(8) * 8 + 5;
+            attributes.frame.origin.x = scrollOffsetX + widthForColumn(6) * 6 + widthForRowHeader();
             attributes.zIndex += 1
         }
 
@@ -195,7 +195,7 @@ open class DataGridViewLayout: UICollectionViewLayout {
                     return $0
                 }
             }
-            attributes.frame.origin.x = scrollOffsetX + widthForColumn(8) * 8 + 5;
+            attributes.frame.origin.x = scrollOffsetX + widthForColumn(6) * 6 + widthForRowHeader();
             attributes.zIndex += 1
         }
         return attributes
